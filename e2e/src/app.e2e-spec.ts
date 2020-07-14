@@ -11,7 +11,7 @@ describe('new App', () => {
       page.navigateTo('/Inbox');
     });
     it('should say Inbox', () => {
-      expect(page.getParagraphText()).toContain('Inbox');
+      expect(page.getParagraphText()).toContain('Blog Post');
     });
   });
 });
