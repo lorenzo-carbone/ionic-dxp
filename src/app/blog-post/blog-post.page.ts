@@ -1,23 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { RestService } from "../providers/rest-service";
 
 @Component({
-  selector: 'app-folder',
-  templateUrl: './folder.page.html',
-  styleUrls: ['./folder.page.scss'],
+  selector: 'app-blog-post',
+  templateUrl: './blog-post.page.html',
+  styleUrls: ['./blog-post.page.scss'],
 })
-export class FolderPage implements OnInit {
-  public folder: string;
+export class BlogPostPage implements OnInit {
+
   public blogPost: any;
+  
   constructor(
-    private activatedRoute: ActivatedRoute,
-    public restService: RestService) {
-    }
+    public restService: RestService
+  ) { }
 
   ngOnInit() {
-    this.folder = this.activatedRoute.snapshot.paramMap.get('id');
-    this.restService.getData("").then((result) => {
+    this.restService.getData("/blog-postings?sort=dateCreated%3Adesc").then((result) => {
       this.blogPost = result.items;
     }, (err) => {
       //Connection failed message
@@ -26,7 +24,7 @@ export class FolderPage implements OnInit {
   }
 
   doRefresh(event) {
-    this.restService.getData("").then((result) => {
+    this.restService.getData("/blog-postings?sort=dateCreated%3Adesc").then((result) => {
       this.blogPost = result.items;
       event.target.complete();
     }, (err) => {

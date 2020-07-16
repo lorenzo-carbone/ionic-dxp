@@ -1,20 +1,21 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+    
     <ion-title>Blog Post</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
 
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
   <ion-card *ngFor="let item of blogPost">
-    <img src="http://localhost:8009/{{item.image.contentUrl}}" />
+    <img src="http://localhost:8080/{{item.image.contentUrl}}" />
     <ion-card-header>
       <ion-card-subtitle>{{item.creator.name}}</ion-card-subtitle>
       <ion-card-title>{{item.headline}}</ion-card-title>
